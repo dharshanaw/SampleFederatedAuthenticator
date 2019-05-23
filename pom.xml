@@ -85,12 +85,12 @@
         <dependency>
             <groupId>org.wso2.carbon.identity.framework</groupId>
             <artifactId>org.wso2.carbon.identity.application.authentication.framework</artifactId>
-            <version>5.11.148</version>
+            <version>5.12.153</version>
         </dependency>
         <dependency>
             <groupId>org.wso2.carbon.identity.framework</groupId>
             <artifactId>org.wso2.carbon.identity.application.authentication.framework</artifactId>
-            <version>5.11.148</version>
+            <version>5.12.153</version>
         </dependency>
     </dependencies>
     <build>
@@ -107,9 +107,9 @@
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Name>${project.artifactId}</Bundle-Name>
-                        <Private-Package>
-                            org.wso2.carbon.identity.application.authenticator.social.internal
-                        </Private-Package>
+                        <!--<Private-Package>-->
+                            <!--org.wso2.carbon.identity.application.authenticator.social.internal-->
+                        <!--</Private-Package>-->
                         <Import-Package>
                             javax.servlet.http; version="${imp.pkg.version.javax.servlet}",
 
