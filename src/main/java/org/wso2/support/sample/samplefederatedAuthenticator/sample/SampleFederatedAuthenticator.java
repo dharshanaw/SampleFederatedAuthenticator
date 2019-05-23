@@ -34,12 +34,12 @@ public class SampleFederatedAuthenticator extends AbstractApplicationAuthenticat
     @Override
     public String getName() {
         log.info("getName");
-        return null;
+        return "SampleFederatedAuthenticator";
     }
 
     @Override
     public String getFriendlyName() {
         log.info("getFriendlyName");
-        return null;
+        return "SampleFederatedAuthenticator";
     }
 }
