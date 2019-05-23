@@ -131,9 +131,9 @@
                             org.wso2.carbon.ui; version="${carbon.kernel.package.import.version.range}"
                         </Import-Package>
                         <Export-Package>
-                            !org.wso2.carbon.identity.application.authenticator.social.internal,
-                            org.wso2.carbon.identity.application.authenticator.social.facebook2.*;
-                            version="5.0.0"
+                            !org.wso2.support.sample.samplefederatedAuthenticator,
+                            org.wso2.support.sample.samplefederatedAuthenticator.SampleFederatedAuthenticator*;
+                            version="1.0-SNAPSHOT"
                         </Export-Package>
                     </instructions>
                 </configuration>
