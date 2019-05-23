@@ -132,7 +132,7 @@
                         </Import-Package>
                         <Export-Package>
                             !org.wso2.support.sample.samplefederatedAuthenticator,
-                            org.wso2.support.sample.samplefederatedAuthenticator.sample.SampleFederatedAuthenticator*;
+                            org.wso2.support.sample.samplefederatedAuthenticator.sample.SampleFederatedAuthenticator.*;
                             version="1.0-SNAPSHOT"
                         </Export-Package>
                     </instructions>
