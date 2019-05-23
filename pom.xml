@@ -107,9 +107,9 @@
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Name>${project.artifactId}</Bundle-Name>
-                        <!--<Private-Package>-->
-                            <!--org.wso2.carbon.identity.application.authenticator.social.internal-->
-                        <!--</Private-Package>-->
+                        <Private-Package>
+                            org.wso2.support.sample.samplefederatedAuthenticator.internal
+                        </Private-Package>
                         <Import-Package>
                             javax.servlet.http; version="${imp.pkg.version.javax.servlet}",
 
@@ -132,7 +132,7 @@
                         </Import-Package>
                         <Export-Package>
                             !org.wso2.support.sample.samplefederatedAuthenticator,
-                            org.wso2.support.sample.samplefederatedAuthenticator.SampleFederatedAuthenticator*;
+                            org.wso2.support.sample.samplefederatedAuthenticator.sample.SampleFederatedAuthenticator*;
                             version="1.0-SNAPSHOT"
                         </Export-Package>
                     </instructions>

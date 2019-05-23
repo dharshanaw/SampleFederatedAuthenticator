@@ -1,4 +1,4 @@
-package org.wso2.support.sample.samplefederatedAuthenticator;
+package org.wso2.support.sample.samplefederatedAuthenticator.sample;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
