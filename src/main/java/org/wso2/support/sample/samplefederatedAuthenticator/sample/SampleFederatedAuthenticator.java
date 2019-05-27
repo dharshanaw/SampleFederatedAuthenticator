@@ -3,6 +3,8 @@ package org.wso2.support.sample.samplefederatedAuthenticator.sample;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
+import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 import org.wso2.carbon.identity.application.authentication.framework.AbstractApplicationAuthenticator;
 import org.wso2.carbon.identity.application.authentication.framework.FederatedApplicationAuthenticator;
 import org.wso2.carbon.identity.application.authentication.framework.context.AuthenticationContext;
@@ -13,6 +15,7 @@ import org.wso2.carbon.identity.core.util.IdentityUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,7 +60,7 @@ public class SampleFederatedAuthenticator extends AbstractApplicationAuthenticat
             throws AuthenticationFailedException {
 
 
-       //try {
+       try {
             Map<String, String> authenticatorProperties = context.getAuthenticatorProperties();
            String[] qureyParamArray = context.getQueryParams().split("&");
            HashMap<String, String> queryParamMap  = new HashMap<>();
@@ -72,32 +75,29 @@ public class SampleFederatedAuthenticator extends AbstractApplicationAuthenticat
 
           // }
 
-           // String authorizationEP = getAuthorizationServerEndpoint();
-          //  String scope = authenticatorProperties.get(FacebookCustomAuthenticatorConstants.SCOPE);
+           String authorizationEP = "https://www.facebook.com/";
+            //String scope = authenticatorProperties.get(FacebookCustomAuthenticatorConstants.SCOPE);
 //
 //            if (StringUtils.isEmpty(scope)) {
 //                scope = FacebookCustomAuthenticatorConstants.EMAIL;
 //            }
 //
-//            String callbackUrl = IdentityUtil.getServerURL(FrameworkConstants.COMMONAUTH, true, true);
+       String callbackUrl = IdentityUtil.getServerURL(FrameworkConstants.COMMONAUTH, true, true);
 //
 //            String state = context.getContextIdentifier() + "," + FacebookCustomAuthenticatorConstants.FACEBOOK_LOGIN_TYPE;
 //
-//            OAuthClientRequest authzRequest =
-//                    OAuthClientRequest.authorizationLocation(authorizationEP)
-//                            .setClientId(clientId)
-//                            .setRedirectURI(callbackUrl)
-//                            .setResponseType(FacebookCustomAuthenticatorConstants.OAUTH2_GRANT_TYPE_CODE)
-//                            .setScope(scope).setState(state)
-//                            .buildQueryMessage();
-   //        response.sendRedirect(authzRequest.getLocationUri());
-//        } catch (IOException e) {
-////            log.error("Exception while sending to the login page.", e);
-////            throw new AuthenticationFailedException(e.getMessage(), e);
-////        } catch (OAuthSystemException e) {
-////            log.error("Exception while building authorization code request.", e);
-////            throw new AuthenticationFailedException(e.getMessage(), e);
-//       }
+            OAuthClientRequest authzRequest =
+                    OAuthClientRequest.authorizationLocation(authorizationEP)
+                            .setRedirectURI(callbackUrl)
+                            .buildQueryMessage();
+          response.sendRedirect(authzRequest.getLocationUri());
+        } catch (IOException e) {
+            log.error("Exception while sending to the login page.", e);
+            throw new AuthenticationFailedException(e.getMessage(), e);
+        } catch (OAuthSystemException e) {
+            log.error("Exception while building authorization code request.", e);
+            throw new AuthenticationFailedException(e.getMessage(), e);
+       }
         return;
     }
 
