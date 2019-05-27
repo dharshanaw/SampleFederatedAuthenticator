@@ -14,6 +14,7 @@ import org.wso2.carbon.identity.core.util.IdentityUtil;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 public class SampleFederatedAuthenticator extends AbstractApplicationAuthenticator implements
@@ -54,12 +55,25 @@ public class SampleFederatedAuthenticator extends AbstractApplicationAuthenticat
     protected void initiateAuthenticationRequest(HttpServletRequest request,
                                                  HttpServletResponse response, AuthenticationContext context)
             throws AuthenticationFailedException {
-        log.info("initiateAuthenticationRequest");
-//        try {
-//            Map<String, String> authenticatorProperties = context.getAuthenticatorProperties();
-//            String clientId = authenticatorProperties.get(FacebookCustomAuthenticatorConstants.CLIENT_ID);
-//            String authorizationEP = getAuthorizationServerEndpoint();
-//            String scope = authenticatorProperties.get(FacebookCustomAuthenticatorConstants.SCOPE);
+
+
+       //try {
+            Map<String, String> authenticatorProperties = context.getAuthenticatorProperties();
+           String[] qureyParamArray = context.getQueryParams().split("&");
+           HashMap<String, String> queryParamMap  = new HashMap<>();
+           for (String queryValue:qureyParamArray
+                ) {
+              String[] queryContent =  queryValue.split("=");
+              queryParamMap.put(queryContent[0],queryContent[1]);
+           }
+
+           String scope = queryParamMap.get("scope");
+           response.setStatus(1);
+
+          // }
+
+           // String authorizationEP = getAuthorizationServerEndpoint();
+          //  String scope = authenticatorProperties.get(FacebookCustomAuthenticatorConstants.SCOPE);
 //
 //            if (StringUtils.isEmpty(scope)) {
 //                scope = FacebookCustomAuthenticatorConstants.EMAIL;
@@ -76,7 +90,7 @@ public class SampleFederatedAuthenticator extends AbstractApplicationAuthenticat
 //                            .setResponseType(FacebookCustomAuthenticatorConstants.OAUTH2_GRANT_TYPE_CODE)
 //                            .setScope(scope).setState(state)
 //                            .buildQueryMessage();
-//            response.sendRedirect(authzRequest.getLocationUri());
+   //        response.sendRedirect(authzRequest.getLocationUri());
 //        } catch (IOException e) {
 ////            log.error("Exception while sending to the login page.", e);
 ////            throw new AuthenticationFailedException(e.getMessage(), e);
