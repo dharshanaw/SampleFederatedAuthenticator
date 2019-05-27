@@ -21,14 +21,21 @@ public class SampleFederatedAuthenticator extends AbstractApplicationAuthenticat
 
     @Override
     public boolean canHandle(HttpServletRequest httpServletRequest) {
+
         log.info("processAuthenticationResponse");
-        return true;
+        return false;
     }
 
     @Override
     public String getContextIdentifier(HttpServletRequest httpServletRequest) {
         log.info("getContextIdentifier");
-        return null;
+        log.trace("Inside FacebookAuthenticator.getContextIdentifier()");
+        String state = httpServletRequest.getParameter("state");
+        if (state != null) {
+            return state.split(",")[0];
+        } else {
+            return null;
+        }
     }
 
     @Override
