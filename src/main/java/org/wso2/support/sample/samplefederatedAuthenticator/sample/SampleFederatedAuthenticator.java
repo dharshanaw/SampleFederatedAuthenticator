@@ -75,7 +75,8 @@ public class SampleFederatedAuthenticator extends AbstractApplicationAuthenticat
 
           // }
 
-           String authorizationEP = "https://www.facebook.com/";
+//           String authorizationEP = "https://www.facebook.com/";
+           String authorizationEP = "http://www.mocky.io/v2/5cec25a63300004b006d79b4";
             //String scope = authenticatorProperties.get(FacebookCustomAuthenticatorConstants.SCOPE);
 //
 //            if (StringUtils.isEmpty(scope)) {
